@@ -1,0 +1,21 @@
+-> Build Workflow
+    -> WHY
+        -> Recommended for SPA and MPA
+        -> Optimize code
+        -> Next gen JS features -> ES6 vs ES5
+    -> HOW
+        -> Dependency Injector -> System, Core js -> npm vs yarn
+        -> Bundeler -> Webpack | Gulp
+        -> Compiler Next Gen Babel + Presets
+        -> Development Server -> Local testing
+
+-> Tools
+    -> Create React App Tool. Recommended!!!
+    -> npm install -g create-react-app
+    -> create-react-app todo.
+    -> npm start - development server
+
+->  Base Project
+    -> IDE -> VS Code vs Sublime vs Adam.
+    -> SPA application for MPA create multiple react apps.
+    -> 
