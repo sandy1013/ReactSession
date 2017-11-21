@@ -18,4 +18,145 @@
 ->  Base Project
     -> IDE -> VS Code vs Sublime vs Adam.
     -> SPA application for MPA create multiple react apps.
-    -> 
+    -> Custom Html Elements at its core.
+    -> Always have a root component and nest the others like a tree.
+    -> Understanding JSX - > .js files is the standard. -> it is just a syntaxitual sugar.
+
+-> Component
+    -> Sample
+        import React, { Component } from 'react';
+        class App extends Component {
+            render() {
+                return React.createElement('div', null, 'h1', 'Sample Text')
+            }
+        }
+    -> Problem
+        return React.createElement('div', null, React.createElement('h1', null, 'Sample Desc'), 'Sample Header');
+    -> Alternativly JSX
+        return (
+            <div className="App">
+                <h3>Hi i am a React Application</h3>
+            </div>
+        );
+    -> Note the diffrences JS, JSX
+        class - html
+        className - js -> JSX
+    -> Exceptions
+        -> class cannot be used as it is a keyword in javascript.
+        -> always return root <div>....</di> -> <div></div><p></p> -> not allowed -> partial support in react > 16 ver.
+    
+    -> Functionality
+        -> Component vs Function 
+            -> 2 ways 
+                -> const cmp = () => { return <div>some JSX</div> }
+                -> class Cmp extends Component { render () { return <div>some JSX</div> } }
+                -> First way is prefered use Components with care.
+        -> Intropolation
+            -> render() {
+                    return (<p>{Math.random()}</p>)
+                }
+        -> Pass data
+            -> functionname(props) { return jsx; }
+            ->  return (<div>
+                    <p>{ this.props.title }</p>
+                    <p>{ this.props.description }</p>
+                </div>)
+            <TodoEditor title="Test Title" description="Test Description"/>
+        -> Transclude
+            -> props.children, it is a reserverd keyword.
+            -> inline text can be nested components or plain jsx
+        -> <TodoEditor title="Test Title" description="Test Description">Sample Transclude</TodoEditor>
+        -> State
+            -> only works ewith extends Component way.
+            -> State, Use with care difficult to maintain.
+            -> state is a keyword, and rerenders the component
+            -> state = {
+                title: "Test Title",
+                description: "Test Description"
+            }
+            -> <TodoEditor title={this.state.title} description={this.state.description}>Sample Transclude</TodoEditor>
+            -> Event emitter, <button onClick={this.testEvent}>Test Event</button>, onClick ->  c in Capital -> pass function refrences only.
+            -> testEvent = () => {}. to get access to this.
+            -> access this.state in function
+        -> Supported Events for State 
+            -> Events, Properties 
+            -> onCopy onCut onPaste, DOMDataTransfer clipboardData
+            -> onKeyDown onKeyPress onKeyUp, boolean altKey
+                                             number charCode
+                                             boolean ctrlKey
+                                             boolean getModifierState(key)
+                                             string key
+                                             number keyCode
+                                             string locale
+                                             number location
+                                             boolean metaKey
+                                             boolean repeat
+                                             boolean shiftKey
+                                             number which
+
+            -> onFocus onBlur, DOMEventTarget relatedTarget
+            -> onChange onInput onInvalid onSubmit
+            -> onClick onContextMenu onDoubleClick onDrag onDragEnd onDragEnter onDragExit onDragLeave onDragOver onDragStart onDrop     onMouseDown onMouseEnter onMouseLeave onMouseMove onMouseOut onMouseOver onMouseUp
+                ,boolean altKey
+                number button
+                number buttons
+                number clientX
+                number clientY
+                boolean ctrlKey
+                boolean getModifierState(key)
+                boolean metaKey
+                number pageX
+                number pageY
+                DOMEventTarget relatedTarget
+                number screenX
+                number screenY
+                boolean shiftKey
+            -> onSelect, onTouchCancel onTouchEnd onTouchMove onTouchStart, 
+                    boolean altKey
+                    DOMTouchList changedTouches
+                    boolean ctrlKey
+                    boolean getModifierState(key)
+                    boolean metaKey
+                    boolean shiftKey
+                    DOMTouchList targetTouches
+                    DOMTouchList touches
+            -> onAbort onCanPlay onCanPlayThrough onDurationChange onEmptied onEncrypted onEnded onError onLoadedData onLoadedMetadata onLoadStart onPause onPlay onPlaying onProgress onRateChange onSeeked onSeeking onStalled onSuspendonTimeUpdate onVolumeChange onWaiting
+                , onLoad onError
+
+        -> State Functions 
+            -> this.setState(), merge to existing state
+            -> react checks state changes only in state and props.
+            -> changes application state as little as posible, use it sparingly in containers like App.
+            -> testEvent = (event) => {
+                    console.log(event);
+                    console.log(this.state);
+                    this.setState({
+                    todos: [
+                        {title: "Test Title 11", description: "Test Description 1"},
+                        {title: "Test Title 22", description: "Test Description 2"},
+                        {title: "Test Title 33", description: "Test Description 3"},
+                        {title: "Test Title 44", description: "Test Description 4"}
+                    ]
+                    });
+                }
+    
+    
+        
+    -> Function Refrences across Components
+        -> Pass function refrences like 
+            <TodoEditor click={this.testEvent} title={this.state.todos[0].title} description={this.state.todos[0].description}>Sample Transclude</TodoEditor>
+
+            return (<div>
+                <p onClick={this.props.click}>{this.props.title}</p>
+                <p>{this.props.description}</p>
+                <p>{this.props.children}</p>
+            </div>)
+
+            -> calls the function refrence
+        -> Custom proreties, this.testEvent.bind(this, ...list of arguments);
+        -> Alternative, onClick={() => this.testEvent(...list of arguments)}, () => auto return implicity for single line - ES6
+    -> Two Way Binding
+        -> OnChange on input fields, get event => event.target.value, call setState()
+    ->
+
+            
